@@ -14,8 +14,10 @@ class Buku_m extends Model
     public $timestamps = false;
     protected $fillable = ['Judul', 'Pengarang', 'Kategori'];
 
-    function get_records(){
-        $result = self::all()->get();
+    function get_records($criteria=''){
+        $result = self::select('*')->when($criteria, function ($query, $criteria) {
+            return $query->where('ID_Buku', $criteria);
+        })->get();
 
         return $result;
     }
