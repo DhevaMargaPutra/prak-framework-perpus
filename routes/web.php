@@ -20,3 +20,16 @@ Route::get('/', function () {
 Route::get('/info', function () {
     return view('info', ['progdi' => 'SI']);
 });
+
+Route::get('/buku', function () {
+    return view('buku.add', [
+        'is_update' => 0,
+        'optkategori' => [
+            '' => '- Pilih Salah Satu -',
+            'novel' => 'Novel',
+            'komik' => 'Komik',
+            'kamus' => 'Kamus',
+            'program' => 'Pemrograman'
+        ]
+    ]);
+});
