@@ -112,7 +112,12 @@ class AnggotaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+
+        $anggota = Anggota::find($id);
+        $anggota->fill($input);
+        $anggota->save();
+        return redirect()->route('anggota.index');
     }
 
     /**
@@ -123,6 +128,8 @@ class AnggotaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $anggota = Anggota::findOrFail($id);
+        $anggota->delete();
+        return redirect()->route('anggota.index');
     }
 }

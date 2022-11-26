@@ -46,7 +46,6 @@ class BukuController extends Controller
         $data = $request->all();
 
         $is_update = $request->input('is_update');
-        Log::info('isupdate', [$is_update]);
 
         if ($is_update == 0) {
             $newBuku = new Buku_m();

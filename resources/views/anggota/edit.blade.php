@@ -11,6 +11,7 @@
 <body>
     <form action="{{ url('anggota/' . $query->ID_Anggota) }}" method="POST" accept-charset="utf-8">
         @csrf
+        @method('PUT')
         <input type="hidden" name="id" value="{{ $query->ID_Anggota }}">
         <input type="hidden" name="is_update" value="{{ $is_update }}">
         NIM : <input type="text" name="nim" value="{{ $query->nim }}" size="50" maxlength="100" />
@@ -27,7 +28,7 @@
         </select>
         <br><br><input type="submit" name="btn_simpan" value="Simpan">
     </form>
-    <br><a href="{{ url('buku') }}">Kembali</a>
+    <br><a href="{{ url('anggota') }}">Kembali</a>
 </body>
 
 </html>

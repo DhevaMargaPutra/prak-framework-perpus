@@ -31,7 +31,11 @@
                 <td>{{ $row['nama'] }}</td>
                 <td>{{ $optkategori[$row['progdi']] }}</td>
                 <td><a href="{{ url('anggota/' . $row['ID_Anggota']) . '/edit' }}">Edit</a>
-                    <a onclick="return confirm('Yakin?')" href="{{ url('buku/delete/' . $row['ID_Buku']) }}">Delete</a>
+                    <form action="{{ url('/anggota', ['id' => $row['ID_Anggota']]) }}" method="post">
+                        @csrf
+                        @method('delete')
+                        <button onclick="return confirm('Yakin?')" type="submit">Delete</button>
+                    </form>
                 </td>
             </tr>
         @endforeach
