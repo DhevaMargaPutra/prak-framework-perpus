@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\InfoController;
+use App\Http\Controllers\PinjamController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,3 +47,5 @@ Route::get('/buku/add', [BukuController::class, 'add_new']);
 Route::post('/buku/save', [BukuController::class, 'save']);
 
 Route::resource('/anggota', AnggotaController::class);
+
+Route::get('/pinjam', [PinjamController::class, 'index']);
