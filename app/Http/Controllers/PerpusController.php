@@ -10,4 +10,9 @@ class PerpusController extends Controller
     {
         return view('perpus.main');
     }
+
+    public function login()
+    {
+        return view('perpus.login');
+    }
 }

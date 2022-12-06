@@ -16,6 +16,7 @@
         <li><a href="{{ url('anggota') }}">Kelola Data Anggota</a></li>
         <li><a href="{{ url('pinjam') }}">Kelola Transaksi Pinjam</a></li>
     </ol>
+    <a href="{{ url('logout') }}">Logout</a>
 </body>
 
 </html>

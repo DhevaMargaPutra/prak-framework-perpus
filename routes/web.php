@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\InfoController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PerpusController;
 use App\Http\Controllers\PinjamController;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +20,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('ftik');
+    // return view('ftik');
+    return redirect('perpus');
 });
 
 Route::get('/info', function () {
@@ -41,15 +43,24 @@ Route::get('/info/{kd}', [InfoController::class, 'infoMhs']);
 //     ]);
 // });
 
-Route::get('/buku/edit/{id}', [BukuController::class, 'edit']);
-Route::get('/buku/delete/{id}', [BukuController::class, 'delete']);
-Route::get('/buku', [BukuController::class, 'index']);
-Route::get('/buku/add', [BukuController::class, 'add_new']);
-Route::post('/buku/save', [BukuController::class, 'save']);
+Route::middleware(['auth'])->group(function () {
 
-Route::resource('/anggota', AnggotaController::class);
+    Route::get('/buku/edit/{id}', [BukuController::class, 'edit']);
+    Route::get('/buku/delete/{id}', [BukuController::class, 'delete']);
+    Route::get('/buku', [BukuController::class, 'index']);
+    Route::get('/buku/add', [BukuController::class, 'add_new']);
+    Route::post('/buku/save', [BukuController::class, 'save']);
 
-Route::get('/pinjam', [PinjamController::class, 'index']);
-Route::post('/pinjam', [PinjamController::class, 'store']);
+    Route::resource('/anggota', AnggotaController::class);
 
-Route::get('/perpus', [PerpusController::class, 'index']);
+    Route::get('/pinjam', [PinjamController::class, 'index']);
+    Route::post('/pinjam', [PinjamController::class, 'store']);
+
+    Route::get('/perpus', [PerpusController::class, 'index']);
+});
+
+Route::get('/login', [PerpusController::class, 'login'])->name('login')
+    ->middleware('guest');
+
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::get('/logout', [LoginController::class, 'logout']);
