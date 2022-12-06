@@ -24,8 +24,15 @@ class PinjamController extends Controller
 
     public function store(Request $request)
     {
+        $data = $request->validate([
+            'ID_Anggota' => 'required',
+            'ID_Buku' => 'required',
+            'tgl_pinjam' => 'required',
+            'tgl_kembali' => 'required',
+        ]);
+
         $pinjam = new Pinjam();
-        $pinjam->fill($request->all());
+        $pinjam->fill($data);
         $pinjam->save();
     }
 }

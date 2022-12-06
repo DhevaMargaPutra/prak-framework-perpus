@@ -9,15 +9,29 @@
 </head>
 
 <body>
+    @if ($errors->any())
+        <div>
+            <ul>
+                @foreach ($errors->all() as $item)
+                    <li>{{ $item }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <form action="{{ url('buku/save') }}" method="POST" accept-charset="utf-8">
         @csrf
         <input type="hidden" name="id">
         <input type="hidden" name="is_update" value="{{ $is_update }}">
-        Judul : <input type="text" name="Judul" size="50" maxlength="100" />
-        <br><br>Pengarang : <input type="text" name="Pengarang" size="50" maxlength="150" />
+        Judul : <input type="text" name="Judul" size="50" maxlength="100" value="{{ old('Judul') }}" />
+        <br><br>Pengarang : <input value="{{ old('Pengarang') }}" type="text" name="Pengarang" size="50"
+            maxlength="150" />
         <br><br>Kategori : <select name='Kategori'>
             @foreach ($optkategori as $key => $value)
-                <option value="{{ $key }}">{{ $value }}</option>
+                @if (old('Kategori') == $key)
+                    <option value="{{ $key }}" selected>{{ $value }}</option>
+                @else
+                    <option value="{{ $key }}">{{ $value }}</option>
+                @endif
             @endforeach
         </select>
         <br><br><input type="submit" name="btn_simpan" value="Simpan">

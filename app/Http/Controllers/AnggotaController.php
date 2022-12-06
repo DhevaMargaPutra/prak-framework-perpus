@@ -56,7 +56,11 @@ class AnggotaController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $data = $request->validate([
+            'nim' => 'required',
+            'nama' => 'required',
+            'progdi' => 'required',
+        ]);
 
         $is_update = $request->input('is_update');
 

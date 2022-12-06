@@ -43,7 +43,12 @@ class BukuController extends Controller
 
     public function save(Buku_m $buku, Request $request)
     {
-        $data = $request->all();
+
+        $data = $request->validate([
+            'Judul' => 'required',
+            'Pengarang' => 'required',
+            'Kategori' => 'required',
+        ]);
 
         $is_update = $request->input('is_update');
 
