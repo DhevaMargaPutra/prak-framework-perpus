@@ -25,7 +25,8 @@ class BukuController extends Controller
     public function index(Buku_m $buku)
     {
         $data = [
-            'query' => $buku->get_records(),
+            // 'query' => $buku->get_records(),
+            'query' => $buku->paginate(5),
             'optkategori' => $this->data['opt_kategori']
         ];
         return view('buku.list', $data);

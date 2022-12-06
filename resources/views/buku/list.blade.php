@@ -36,6 +36,8 @@
             </tr>
         @endforeach
     </table>
+    <div>{{ $query->links('vendor.pagination.mypage') }}</div>
+    <br><a href="{{ url('perpus') }}">Kembali</a>
 </body>
 
 </html>

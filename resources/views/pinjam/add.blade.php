@@ -47,7 +47,7 @@
         <br><br><input type="submit" value="Simpan">
         <input type="reset" value="Batal">
     </form>
-    <br><a href="{{ url()->previous() }}">Kembali</a>
+    <br><a href="{{ url('perpus') }}">Kembali</a>
 </body>
 
 </html>

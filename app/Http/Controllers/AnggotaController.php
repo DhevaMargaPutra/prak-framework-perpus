@@ -26,7 +26,7 @@ class AnggotaController extends Controller
     public function index()
     {
         $data = [
-            'query' => Anggota::all(),
+            'query' => Anggota::paginate(5),
             'optkategori' => $this->data['opt_kategori']
         ];
 
